@@ -1,0 +1,9 @@
+/_build
+/deps
+erl_crash.dump
+*.ez
+.sass-cache
+priv/static/components
+*.lock
+priv/static/css
+cover

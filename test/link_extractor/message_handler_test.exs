@@ -1,4 +1,4 @@
-defmodule LinkExtractor.WorkerTest do
+defmodule LinkExtractor.MessageHandlerTest do
   use ExUnit.Case
   alias LinkExtractor.Link
 
@@ -8,11 +8,10 @@ defmodule LinkExtractor.WorkerTest do
 
   @expected_link %Link{
     url: "https://github.com/kien/ctrlp.vim",
-    title: "kien/ctrlp.vim · GitHub"
   }
 
   test "extracts links from messages" do
-    assert LinkExtractor.Worker.extract_links(@message) == [@expected_link]
+    assert LinkExtractor.MessageHandler.extract_links(@message) == [@expected_link]
   end
   
 end

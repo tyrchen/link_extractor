@@ -17,7 +17,6 @@ defmodule LinkExtractorTest do
 
   test "when text is injected into the system, those links are stored,.....", context do
     LinkExtractor.inject @message
-    :timer.sleep 1000
     assert LinkExtractor.get_links == [@expected_link]
   end
 end

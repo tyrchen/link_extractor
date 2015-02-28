@@ -17,7 +17,7 @@ defmodule LinkExtractor.Worker do
   end
 
   def handle_message(server, message) do
-    GenServer.cast server, {:handle_message, message}
+    GenServer.call server, {:handle_message, message}
   end
 
   ## Server callbacks
@@ -26,12 +26,12 @@ defmodule LinkExtractor.Worker do
     {:ok, []}
   end
 
-  def handle_cast({:handle_message, message}, state) do
+  def handle_call({:handle_message, message}, _from, state) do
     extract_links(message)
     |> Enum.map(fn link ->
       Agent.update :collector, &([link|&1])
     end)
-    {:noreply, state}
+    {:reply, :ok, state}
   end
 
   defp add_title(link=%Link{url: url}) do
